@@ -4,6 +4,7 @@ import './App.css';
 // import GreetingF from './components/pure/greetingF';
 import TaskListComponent from './components/container/task_list';
 import GreetinfStyled from './components/pure/greetinfStyled';
+import Father from './components/container/father';
 // import Ejemplo1 from './hooks/ejemplo1';
 // import Ejemplo2 from './hooks/ejemplo2';
 // import MiComponenteConContexto from './hooks/ejemplo3';
@@ -30,8 +31,11 @@ function App() {
 
       {/* </header> */}
 
-      <TaskListComponent></TaskListComponent>
+      {/* <TaskListComponent></TaskListComponent> */}
 
+
+        {/* Gestiónde eventos */}
+        <Father></Father>
     </div>
   );
 }
