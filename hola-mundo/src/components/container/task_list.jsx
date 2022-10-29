@@ -24,6 +24,36 @@ const TaskListComponent = () => {
     }, [tasks]);
 
 
+    function completeTask(task) {
+
+        console.log("Complete this task ", task)
+        const index = tasks.indexOf(task);
+
+        // usar siempre una variable temporal 
+        const tempTasks = [...tasks];
+        tempTasks[index].completed = !tempTasks[index].completed;
+
+        //We update the state of the component and it will update the 
+        //iteration of the taskin order to show the task updated
+
+        setTasks(tempTasks);
+    }
+
+    function removeTask(task) {
+        console.log('Delete this Task:', task);
+        const index = tasks.indexOf(task);
+        const tempTasks = [...tasks];
+        tempTasks.splice(index, 1);
+        setTasks(tempTasks);
+    }
+
+    function addTask(task){
+        console.log('Delete this Task:', task);
+        const tempTasks = [...tasks];
+        tempTasks.push(task);
+        setTasks(tempTasks);    
+
+    }
 
     const changeCompleted = (id) => {
         console.log('TODO: Cambiar estado de una tarea')
@@ -40,37 +70,39 @@ const TaskListComponent = () => {
                     </h5>
                 </div>
                 {/* Card body */}
-                <div className='card-body'data-mbd-perfect-scrollbar='true' style={{position:'relative', height:'400px'}}>
+                <div className='card-body' data-mbd-perfect-scrollbar='true' style={{ position: 'relative', height: '400px' }}>
                     <table>
                         <thead>
-                        <tr>
-                            <th scope='col'> Title </th>
-                            <th scope='col'> Description </th>
-                            <th scope='col'> Priority </th>
-                            <th scope='col'> Actions </th>
-                        </tr>
+                            <tr>
+                                <th scope='col'> Title </th>
+                                <th scope='col'> Description </th>
+                                <th scope='col'> Priority </th>
+                                <th scope='col'> Actions </th>
+                            </tr>
                         </thead>
                         <tbody>
                             {/* iterar sobre una lista de tareas */}
-                            { tasks.map((task, index) =>{
-                                return(
-                                    <TaskComponent 
-                                    key={index} 
-                                    task={task} >
+                            {tasks.map((task, index) => {
+                                return (
+                                    <TaskComponent
+                                        key={index}
+                                        task={task}
+                                        complete={completeTask}
+                                        remove={removeTask}>
                                     </TaskComponent>
                                 )
-                            }) }
-                            
+                            })}
+
                         </tbody>
 
                     </table>
                 </div>
 
-                <TaskForms></TaskForms>
+                
             </div>
 
-            {/* TODO agregar un far/map para renderizar la lista de tareas */}
-           
+            <TaskForms add={addTask}></TaskForms>
+
         </div>
     );
 };

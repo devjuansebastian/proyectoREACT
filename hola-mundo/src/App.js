@@ -35,7 +35,8 @@ function App() {
 
 
         {/* Gestiónde eventos */}
-        <Father></Father>
+        {/* <Father></Father> */}
+        <TaskListComponent></TaskListComponent>
     </div>
   );
 }
